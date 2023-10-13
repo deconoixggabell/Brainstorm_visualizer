@@ -37,6 +37,12 @@ def show_dashboard():
 
 # Delete Users Controller
 
+@app.route('/users/delete/<int:user_id>')
+def delete_user(user_id):
+    if "user_id" not in session:
+        return redirect("/")
+    user.User.delete_user(user_id)
+    return redirect('/users/dashboard')
 
 # Login and Logout
 
