@@ -74,6 +74,19 @@ class User:
     #             }))
     #     return this_user
 
+    @classmethod
+    def get_user_by_id(cls, user_id):
+
+        data = {'id': user_id}
+        query = """
+                SELECT * FROM users
+                WHERE id = %(id)s;
+        """
+        
+        results = connectToMySQL(cls.db).query_db(query, data)  # a list with one dictionary in it
+        one_user = cls(results[0])
+        return one_user # returns user object
+
 
     # the get_user_by_email method will be used when we need to retrieve just one specific row of the table
     @classmethod
@@ -91,6 +104,49 @@ class User:
 
 
     # Update Users Models
+
+    @classmethod
+    def update_user_password(cls, user_data):  
+
+        user_data = user_data.copy()
+
+        user_data['password'] = bcrypt.generate_password_hash(user_data['password'])
+    
+        this_user = cls.get_user_by_id(user_data['id'])
+
+        if session['user_id'] != this_user.id:
+            return False
+        
+        is_valid = cls.validate_user_password(user_data)
+        
+        if not is_valid:
+            return False
+        
+        query = """
+                UPDATE users
+                SET password = %(password)s
+                WHERE id=%(id)s;    
+                """
+        connectToMySQL(cls.db).query_db(query, user_data)
+        return True
+
+
+    # Delete Users Models
+
+    @classmethod
+    def delete_user(cls, user_id):
+        
+        if session['user_id'] != user_id:
+            return False
+        
+        data = {'id': user_id}
+
+        query = """
+                DELETE FROM users
+                WHERE id = %(id)s;
+        """
+        
+        return connectToMySQL(cls.db).query_db(query, data)
 
     
     # Validation
@@ -147,6 +203,26 @@ class User:
                 return False
         return is_valid
     
+    @staticmethod
+    def validate_user_password(user):
+
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
+        is_valid = True
+        
+        if len(user['password']) < 8 or user['password'].isspace():
+            flash("Password must be at least 8 characters long.", "error")
+            is_valid = False
+        elif user['password'] != user['confirm_password']:
+            flash("Passwords do not match.", "error")
+            is_valid = False
+        if not User.string_contains_an_uppercase_letter(user['password']):
+            flash("Password must contain at least one uppercase letter.", "error") 
+            is_valid = False
+        if not User.string_contains_a_number(user["password"]):
+            flash("Password must contain at least one number.", "error") 
+            is_valid = False                  
+        return is_valid
     
     # login and logout
 
