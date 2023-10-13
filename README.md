@@ -7,7 +7,7 @@ DESCRIPTION:  A platform with a preset of visualizations for planning or ideas. 
 LIST OF FEATURES:
 Has a Main Idea
 Has Categories
-Branches of sub categories/ideas
+Branches of subcategories/ideas
 CRUD the Brainstorm
 CRUD the User
 Able to copy Embed code of  visualizations and into outside sources.
