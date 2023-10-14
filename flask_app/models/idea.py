@@ -61,50 +61,55 @@ class Idea:
         """
         results = connectToMySQL(db).query_db(query, data)
 
+
     @classmethod
-    #def get_one_with_user(cls,data):
-    #    query = "SELECT * FROM ideas LEFT JOIN users ON users.id = ideas.users_id WHERE ideas.id = %(id)s;"
-    #    results = connectToMySQL(cls.db).query_db(query, data)
-    #    row = results[0]
-    #    one_idea = cls(row)
-    #    user_data = {
-    #        "id": row['users.id'],
-    #        "first_name": row['first_name'],
-    #        "last_name": row['last_name'],
-    #        "email": row['email'],
-    #        "password": row['password'],
-    #        "created_at": row['users.created_at'],
-    #        "updated_at": row['users.updated_at'],
-    #    }
-#
-    #    one_idea.user = user.User(user_data)
-#
-    #    return one_idea
-#
-    #@classmethod
-    #def update(cls,data):
-    #    query = """
-    #    UPDATE ideas
-    #    SET name=%(name)s, description=%(description)s, patent_approved=%(patent_approved)s 
-    #    WHERE id = %(id)s;"""
-#
-    #    return connectToMySQL(cls.db).query_db(query,data)
-#
-    #@classmethod
-    #def delete_invention(cls, data):
-    #    query = "DELETE FROM inventions WHERE id = %(id)s;"
-    #    connectToMySQL(db).query_db(query, data)
-    #
-    #@staticmethod
-    #def valid(invention):
-    #    is_valid = True 
-    #    if len(invention['name']) < 3:
-    #        flash("*Name must be at least 3 characters")
-    #        is_valid = False
-    #    if len(invention['description']) < 1:
-    #        flash("*A description must be submitted")
-    #        is_valid = False
-    #    print(is_valid)
-    #    return is_valid
-#
-#
+    def get_one_with_user(cls, data):
+        query = "SELECT * FROM ideas LEFT JOIN users ON users.id = ideas.users_id WHERE ideas.id = %(id)s;"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        if results:
+            row = results[0]
+            one_idea = cls(row)
+            user_data = {
+                "id": row['users.id'],
+                "first_name": row['first_name'],
+                "last_name": row['last_name'],
+                # Add other user attributes as needed
+                #"email": row['email'],
+                #"password": row['password'],
+                #"created_at": row['users.created_at'],
+                #"updated_at": row['users.updated_at'],
+            }
+
+            one_idea.user = user.User(user_data)
+
+            return one_idea
+
+    @classmethod
+    def update(cls, data):
+        query = """
+        UPDATE ideas
+        SET main_idea=%(main_idea)s, cat_i=%(cat_i)s, cat_ii=%(cat_ii)s,
+        cat_iii=%(cat_iii)s, cat_iv=%(cat_iv)s, cat_v=%(cat_v)s,
+        sub_c_i=%(sub_c_i)s, sub_c_ii=%(sub_c_ii)s, sub_c_iii=%(sub_c_iii)s,
+        sub_c_iv=%(sub_c_iv)s, sub_c_v=%(sub_c_v)s, sub_c_vi=%(sub_c_vi)s,
+        sub_c_vii=%(sub_c_vii)s, sub_c_viii=%(sub_c_viii)s, sub_c_ix=%(sub_c_ix)s,
+        sub_c_x=%(sub_c_x)s, sub_c_xi=%(sub_c_xi)s, sub_c_xii=%(sub_c_xii)s,
+        sub_c_xiii=%(sub_c_xiii)s, sub_c_xiv=%(sub_c_xiv)s, sub_c_xv=%(sub_c_xv)s
+        WHERE id = %(id)s;
+        """
+        return connectToMySQL(cls.db).query_db(query, data)
+
+    @classmethod
+    def delete_idea(cls, data):
+        query = "DELETE FROM ideas WHERE id = %(id)s;"
+        connectToMySQL(cls.db).query_db(query, data)
+
+    @staticmethod
+    def valid(idea):
+        is_valid = True
+        if len(idea['main_idea']) < 3:
+            flash("*Main idea must be at least 3 characters")
+            is_valid = False
+        # Add validation for other fields as needed
+        return is_valid
+
