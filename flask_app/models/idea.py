@@ -5,7 +5,7 @@ from flask import flash
 db = "brainstorm_visualizer"
 
 class Idea:
-    db = "brainstorm_visualizer"
+    db = "brainstorm_visualizer_"
     def __init__(self, data=None):
         if data is not None:
             self.id = data['id']
