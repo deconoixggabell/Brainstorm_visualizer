@@ -11,11 +11,7 @@ class MySQLConnection:
     def __init__(self, db):
 # change the user and password as needed
         connection = pymysql.connect(host = 'localhost',
-<<<<<<< HEAD
                                     port=3603,
-=======
-                                    port=4321,
->>>>>>> origin/Glory's-Branch
                                     user = 'dev_account', 
                                     password = 'IHateLongPasswords', 
                                     db = db,
