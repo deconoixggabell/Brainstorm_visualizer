@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        <a href="">
+            <button>Dashboard</button>
+        </a>
+        <a href="">
+            <button>Logout</button>
+        </a>
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Idea</th>
+                    <th>Actions</th>
+                    <th>Enbeded Code</th>
+                </tr>
+            </thead>    
+            <tbody>
+                {% for u in users %}
+                <tr>
+                    <td>{{.id}}</td>
+                    <td>{{.idea}}</td>
+                    <td>
+                        <a href="">Edit</a>
+                        <a href="">Delete</a>
+                    </td>
+                    <td><a href="">Click To Copy</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h4>{{user.name}}States</h4>
+        <p>Number Of Ideas:</p>
+        <p>Total Visit To Idea:</p>
+    </div>
+</body>
+</html>
