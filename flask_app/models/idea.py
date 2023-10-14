@@ -61,7 +61,7 @@ class Idea:
         """
         results = connectToMySQL(db).query_db(query, data)
 
-    #@classmethod
+    @classmethod
     #def get_one_with_user(cls,data):
     #    query = "SELECT * FROM ideas LEFT JOIN users ON users.id = ideas.users_id WHERE ideas.id = %(id)s;"
     #    results = connectToMySQL(cls.db).query_db(query, data)
