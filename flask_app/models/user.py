@@ -9,7 +9,7 @@ bcrypt = Bcrypt(app)
 
 
 class User:
-    db = "name_of_database_here" 
+    db = "brainstorm_visualizer" 
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
