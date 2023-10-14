@@ -172,6 +172,7 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
+
 mysqlconnection.py
 
 # End of https://www.toptal.com/developers/gitignore/api/python
