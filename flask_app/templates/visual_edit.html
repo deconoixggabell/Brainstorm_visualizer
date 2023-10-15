@@ -4,14 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Add the link to Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles here if needed */
+        .header {
+            background-color: #007BFF;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .header button {
+            margin-left: 10px;
+        }
+
+        .visual_edit_container {
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .edit {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        .visual {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
         <a href="">
-            <button>Dashboard</button>
+            <button class="btn btn-primary">Dashboard</button>
         </a>
-        <a href="">
-            <button>Logout</button>
+        <a href="/logout">
+            <button class="btn btn-danger">Logout</button>
         </a>
     </div>
 
@@ -62,5 +103,9 @@
             <!-- missing the junja to get the user imput -->
         </div>
     </div>
+
+    <!-- Add the link to Bootstrap JS CDN and jQuery CDN for Bootstrap components if needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
