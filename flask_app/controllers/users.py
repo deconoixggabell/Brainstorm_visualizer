@@ -63,7 +63,9 @@ def logout():
     return redirect('/login')
 
 # Update Users Controller
-
+@app.route('/update')
+def update():
+    return render_template('user_edit.html')
 
 # Delete Users Controller
 
