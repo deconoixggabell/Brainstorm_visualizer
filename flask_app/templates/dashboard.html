@@ -4,51 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add custom styles here if needed */
+    </style>
 </head>
 <body>
     <div class="header">
-        <h1>Dashboard</h1>
-        <a href="/update">
-            <button>Account</button>
+        <a href="">
+            <button>Dashboard</button>
         </a>
-        <a href="/dashboard">
-            <button>Create Diagram</button>
-        </a>
-        <a href="/logout">
+        <a href="">
             <button>Logout</button>
         </a>
     </div>
 
-    <div>
-        <table>
-            <thead>
+    <div class="container mt-4">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
                 <tr>
                     <th>#</th>
                     <th>Idea</th>
                     <th>Actions</th>
-                    <th>Enbeded Code</th>
+                    <th>Embedded Code</th>
                 </tr>
             </thead>    
             <tbody>
                 {% for u in users %}
                 <tr>
-                    <td>{{u.id}}</td>
-                    <td>{{u.idea}}</td>
+                    <td>{{.id}}</td>
+                    <td>{{.idea}}</td>
                     <td>
-                        <a href="">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
                     </td>
-                    <td><a href="">Click To Copy</a></td>
+                    <td><a href="#" class="btn btn-success btn-sm">Click To Copy</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
-    <div>
-        <h4>{{user.name}}States</h4>
-        <p>Number Of Ideas:</p>
-        <p>Total Visit To Idea:</p>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>{{ user.first_name }}'s Stats</h4>
+                <p>Number Of Ideas:</p>
+                <p>Total Visits To Ideas:</p>
+            </div>
+            <!-- Add more user stats here if needed -->
+        </div>
     </div>
+
+    <!-- Add the link to Bootstrap JS CDN and jQuery CDN for Bootstrap components if needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -3,6 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Idea</title>
+    <!-- Add the link to Bootstrap CSS CDN if needed -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="container-fluid bg-primary text-white py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-4">Dashboard</h1>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="/dashboard" class="btn btn-secondary mr-2">Dashboard</a>
+                    <a href="/logout" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+        <h2>Create New Idea</h2>
+        <form action="/ideas/create" method="POST">
+            <div class="form-group">
+                <label for="main_idea">Main Idea</label>
+                <input type="text" name="main_idea" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="num_categories">Number of Categories</label>
+                <select name="num_categories" id="num_categories" class="form-control" onchange="updateCategoryFields()">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div id="category_fields">
+                <!-- Category input fields will be added here based on user's selection -->
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create Idea</button>
+                <a href="/ideas" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Add the link to Bootstrap JS CDN and jQuery CDN if needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function updateCategoryFields() {
+            const numCategories = parseInt(document.getElementById("num_categories").value);
+            const categoryFieldsDiv = document.getElementById("category_fields");
+            categoryFieldsDiv.innerHTML = ""; // Clear existing fields
+
+            for (let i = 1; i <= numCategories; i++) {
+                const categoryLabel = document.createElement("label");
+                categoryLabel.innerText = `Category ${i}`;
+                const categoryInput = document.createElement("input");
+                categoryInput.type = "text";
+                categoryInput.name = `cat_${i}`;
+                categoryInput.className = "form-control";
+                categoryFieldsDiv.appendChild(categoryLabel);
+                categoryFieldsDiv.appendChild(categoryInput);
+
+                // Create sub-category input fields
+                for (let j = 1; j <= 3; j++) {
+                    const subCategoryLabel = document.createElement("label");
+                    subCategoryLabel.innerText = `Sub-Category ${j}`;
+                    const subCategoryInput = document.createElement("input");
+                    subCategoryInput.type = "text";
+                    subCategoryInput.name = `sub_cat_${i}_${j}`;
+                    subCategoryInput.className = "form-control";
+                    categoryFieldsDiv.appendChild(subCategoryLabel);
+                    categoryFieldsDiv.appendChild(subCategoryInput);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
