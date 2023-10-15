@@ -6,6 +6,12 @@
     <title>Create New Idea</title>
     <!-- Add the link to Bootstrap CSS CDN if needed -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/diagram.css')}}">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/diagram.css">
+
+
 </head>
 <body>
     <header class="container-fluid bg-primary text-white py-3">
@@ -22,12 +28,12 @@
         </div>
     </header>
 
-    <div class="container mt-5">
-        <h2>Create New Idea</h2>
-        <form action="/ideas/create" method="POST">
+    <div id="form-and-diagram" class="container mt-5 d-flex justify-content-around flex-wrap">
+        <form action="/ideas/create" method="POST" class="">
+            <h2>Create New Idea</h2>
             <div class="form-group">
                 <label for="main_idea">Main Idea</label>
-                <input type="text" name="main_idea" class="form-control" required>
+                <input type="text" name="main_idea" id="main_idea_input" class="form-control" required oninput="updateDiagram()">
             </div>
             <div class="form-group">
                 <label for="num_categories">Number of Categories</label>
@@ -47,15 +53,29 @@
                 <a href="/ideas" class="btn btn-secondary">Cancel</a>
             </div>
         </form>
+        <!-- DIAGRAM -->
+        <div id="diagram" class="align-self-center p-2">
+            <div id="d_main_idea">
+
+            </div>
+            <!-- <div class="category">
+            </div>
+            <div class="sub_category">
+            </div> -->
+        </div>
     </div>
+
+
 
     <!-- Add the link to Bootstrap JS CDN and jQuery CDN if needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         function updateCategoryFields() {
             const numCategories = parseInt(document.getElementById("num_categories").value);
             const categoryFieldsDiv = document.getElementById("category_fields");
+            const dMainIdead = document.getElementById("d_main_idea"); //not being used yet - Franco
             categoryFieldsDiv.innerHTML = ""; // Clear existing fields
 
             for (let i = 1; i <= numCategories; i++) {
@@ -80,6 +100,13 @@
                     categoryFieldsDiv.appendChild(subCategoryInput);
                 }
             }
+        }
+
+        function updateDiagram() {
+            const ideaCloud = document.getElementById("d_main_idea"); //not being used yet - Franco
+            const ideaInput = document.getElementById("main_idea_input");
+            ideaCloud.innerHTML = ideaInput.value;
+
         }
     </script>
 </body>

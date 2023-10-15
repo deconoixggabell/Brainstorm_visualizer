@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{diagram.name}} Diagram View</title>
+    <!-- Add the link to Bootstrap CSS CDN if needed -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header class="container-fluid bg-primary text-white py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-4">{{diagram.name}} Diagram</h1>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="/dashboard" class="btn btn-secondary mr-2">Dashboard</a>
+                    <a href="/logout" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+            
+    </div>
+
+    <!-- Add the link to Bootstrap JS CDN and jQuery CDN if needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function updateCategoryFields() {
+            const numCategories = parseInt(document.getElementById("num_categories").value);
+            const categoryFieldsDiv = document.getElementById("category_fields");
+            categoryFieldsDiv.innerHTML = ""; // Clear existing fields
+
+            for (let i = 1; i <= numCategories; i++) {
+                const categoryLabel = document.createElement("label");
+                categoryLabel.innerText = `Category ${i}`;
+                const categoryInput = document.createElement("input");
+                categoryInput.type = "text";
+                categoryInput.name = `cat_${i}`;
+                categoryInput.className = "form-control";
+                categoryFieldsDiv.appendChild(categoryLabel);
+                categoryFieldsDiv.appendChild(categoryInput);
+
+                // Create sub-category input fields
+                for (let j = 1; j <= 3; j++) {
+                    const subCategoryLabel = document.createElement("label");
+                    subCategoryLabel.innerText = `Sub-Category ${j}`;
+                    const subCategoryInput = document.createElement("input");
+                    subCategoryInput.type = "text";
+                    subCategoryInput.name = `sub_cat_${i}_${j}`;
+                    subCategoryInput.className = "form-control";
+                    categoryFieldsDiv.appendChild(subCategoryLabel);
+                    categoryFieldsDiv.appendChild(subCategoryInput);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
