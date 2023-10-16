@@ -16,7 +16,7 @@
         <h1 class="text-center mt-5">Brainstorm Visualizer</h1>
         <div class="d-flex justify-content-center mt-5">
             <div class="left_side col-5 mr-5">
-                <form action="/register" method="post" name="registration_form" class="bg-info  p-3 px-5 rounded">
+                <form action="/users/register" method="post" class="bg-info  p-3 px-5 rounded">
                     <h2 class="text-center mb-4 mt-3">Register</h2>
                     <input type="hidden" name="which_form" value="register">
                     <div class="mb-4">
@@ -40,12 +40,12 @@
                         <input class="form-control" type="password" name="confirm_password" id="confirm_password">
                     </div>
                     
-                    <button type="submit" class="btn btn-primary bg-dark m-3 mx-auto" name="register_btn" id="register_btn">Register</button>
+                    <button type="submit" formaction="/users/register" method="post" class="btn btn-primary bg-dark m-3 mx-auto" name="register_btn" id="register_btn">Register</button>
                 </form>
         
             </div>
             <div class="right_side col-4">
-                <form action="/login/user" method="post" class="bg-light border border-info p-3 px-5 rounded">
+                <form action="/users/login" method="post" class="bg-light border border-info p-3 px-5 rounded">
                     <h2 class="text-center mb-4 mt-3">Login</h2>
                     <input type="hidden" name="which_form" value="login">
                     <div class="mb-4">
@@ -57,7 +57,7 @@
                         <input class="form-control" type="password" name="password" id="password">
                     </div>
                     
-                    <button type="submit" formaction="/login/user" method="post" class="btn btn-primary bg-dark m-3 mx-auto" name="login_btn" id="login_btn">Login</button>
+                    <button type="submit" formaction="/users/login" method="post" class="btn btn-primary bg-dark m-3 mx-auto" name="login_btn" id="login_btn">Login</button>
                 </form>
             </div>
             

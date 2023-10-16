@@ -1,7 +1,10 @@
 from flask import flash
+from flask_app import app
+from flask import render_template, redirect, request, session, url_for, flash
 from flask_app.models import idea
-from flask_bcrypt import Bcrypt
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt(app)
 import re
 
 db = "brainstorm_visualizer"
@@ -33,7 +36,20 @@ class User:
         if len(result) < 1:
             return False
         return cls(result[0])
+    
+    @classmethod
+    def get_user_by_id(cls, user_id):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        data = {
+            'id': user_id
+        }
+        result = connectToMySQL(cls.db).query_db(query, data)
 
+        if not result:
+            return None
+
+        return cls(result[0])
+    
     @classmethod
     def update_user_password(cls, user_data):  
 
@@ -204,3 +220,36 @@ class User:
         return user
 
 
+    @classmethod
+    def login_user(cls, data):
+        email_to_check = data["email"]
+        user_in_db = cls.get_user_by_email(email_to_check)
+
+        if not user_in_db:
+            flash(f"{email_to_check} is not registered.", "error")
+            return False
+        
+        password_to_check = data["password"]
+        if not bcrypt.check_password_hash(user_in_db.password, password_to_check):
+            flash("Password does not match.", "error")
+            return False
+        
+        session['user_id'] = user_in_db.id
+        session['first_name'] = user_in_db.first_name
+        session['logged_in'] = True
+
+        return True
+    
+        # the get_user_by_email method will be used when we need to retrieve just one specific row of the table
+    @classmethod
+    def get_user_by_email(cls, email):
+        query = """
+                SELECT * FROM users
+                WHERE email = %(email)s;
+        """
+        data = {'email': email}
+        result = connectToMySQL(cls.db).query_db(query, data)  # a list with one dictionary in it
+        if len(result) < 1:     # no matching user
+            return False
+        one_user = cls(result[0])
+        return one_user # returns user object
