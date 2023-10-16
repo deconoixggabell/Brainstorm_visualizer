@@ -27,10 +27,12 @@ def show_dashboard():
         return redirect("/")
     if "logged_in" in session:
         if session['logged_in']:
+            user_id = session['user_id'];
+            user_info = user.User.get_user_by_id(user_id)
             # TO DO  need to add the appropriate methods for the dashboard **************************************************************************************************
             # one_user_with_all_buyers = user.User.get_one_user_by_id_with_all_buyers(session['user_id'])
             # return render_template("all_buyers_dashboard.html", one_user_with_all_buyers=one_user_with_all_buyers)
-            return render_template("dashboard.html")
+            return render_template("dashboard.html", user_info=user_info)
     return redirect("/users/logout")
 
 # Update Users Controller
