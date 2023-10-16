@@ -9,7 +9,7 @@ bcrypt = Bcrypt(app)
 
 
 class User:
-    db = "name_of_database_here" 
+    db = "brainstorm_visualizer" 
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -110,21 +110,46 @@ class User:
 
         user_data = user_data.copy()
 
+        is_valid = cls.validate_user_password(user_data)
+        
+        if not is_valid:
+            return False
+
+        this_user = cls.get_user_by_id(user_data['id'])
+
+        if session['user_id'] != this_user.id:
+            return False
+        
         user_data['password'] = bcrypt.generate_password_hash(user_data['password'])
+    
+        query = """
+                UPDATE users
+                SET password = %(password)s
+                WHERE id=%(id)s;    
+                """
+        connectToMySQL(cls.db).query_db(query, user_data)
+        return True
+    
+    @classmethod
+    def update_user_profile(cls, user_data):  
+
+        user_data = user_data.copy()
     
         this_user = cls.get_user_by_id(user_data['id'])
 
         if session['user_id'] != this_user.id:
             return False
         
-        is_valid = cls.validate_user_password(user_data)
+        is_valid = cls.validate_user_profile(user_data)
         
         if not is_valid:
             return False
         
         query = """
                 UPDATE users
-                SET password = %(password)s
+                SET first_name = %(first_name)s,
+                    last_name = %(last_name)s,
+                    email = %(email)s
                 WHERE id=%(id)s;    
                 """
         connectToMySQL(cls.db).query_db(query, user_data)
@@ -222,6 +247,30 @@ class User:
         if not User.string_contains_a_number(user["password"]):
             flash("Password must contain at least one number.", "error") 
             is_valid = False                  
+        return is_valid
+    
+    @staticmethod
+    def validate_user_profile(user):
+
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
+        is_valid = True
+        if len(user['first_name']) < 4 or user['first_name'].isspace() or not user['first_name'].isalpha():
+            flash("First name must be at least 3 letters long.", "error")
+            is_valid = False
+        if len(user['last_name']) < 4 or user['last_name'].isspace()or not user['last_name'].isalpha():
+            flash("Last name must be at least 3 letters long.", "error")
+            is_valid = False                 
+        if len(user['email']) == 0  or user['email'].isspace():
+            flash("Email is required.", "error")
+            is_valid = False       
+        elif not EMAIL_REGEX.match(user['email']):
+            flash("Invalid email format.", "error")
+            is_valid = False   
+        if User.get_user_by_email(user['email']):
+            if int(user['id']) != session['user_id']:  #okay for user to keep the same email, but don't want someone else using this email
+                flash(f"{user['email']} is already taken.")
+                return False
         return is_valid
     
     # login and logout
