@@ -10,6 +10,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <header class="container-fluid bg-primary text-white py-3">
         <div class="container">
             <div class="row">
@@ -25,6 +26,16 @@
             </div>
         </div>
     </header>
+=======
+    <div class="header">
+        <a href="">
+            <button>Dashboard</button>
+        </a>
+        <a href="">
+            <button>Logout</button>
+        </a>
+    </div>
+>>>>>>> fdcf69be8273c8448199b73eb5bca357104399de
 
     <div class="container mt-4">
         <table class="table table-bordered table-striped">
@@ -39,8 +50,13 @@
             <tbody>
                 {% for u in users %}
                 <tr>
+<<<<<<< HEAD
                     <td>{{u.id}}</td>
                     <td>{{u.idea}}</td>
+=======
+                    <td>{{.id}}</td>
+                    <td>{{.idea}}</td>
+>>>>>>> fdcf69be8273c8448199b73eb5bca357104399de
                     <td>
                         <a href="#" class="btn btn-primary btn-sm">Edit</a>
                         <a href="#" class="btn btn-danger btn-sm">Delete</a>
