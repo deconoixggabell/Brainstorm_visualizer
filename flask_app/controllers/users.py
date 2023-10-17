@@ -23,16 +23,13 @@ def index():
     return render_template("login_and_registration.html")
 
 
-
-
-
 @app.route('/users/dashboard')
 def show_dashboard():
     if "user_id" not in session:
         return redirect("/")
     if "logged_in" in session:
         if session['logged_in']:
-            user_id = session['user_id'];
+            user_id = session['user_id']
             user_info = user.User.get_user_by_id(user_id)
             ideas = idea.Idea.read_all_ideas()
             # TO DO  need to add the appropriate methods for the dashboard **************************************************************************************************
