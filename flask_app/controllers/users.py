@@ -1,6 +1,7 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, url_for, flash
-from flask_app.models import user # import entire file, rather than class, to avoid circular imports (separate with commas)
+from flask_app.models import user, idea # import entire file, rather than class, to avoid circular imports (separate with commas)
+from flask_app.config.mysqlconnection import connectToMySQL
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
@@ -21,16 +22,23 @@ def create_user():
 def index():
     return render_template("login_and_registration.html")
 
+
+
+
+
 @app.route('/users/dashboard')
 def show_dashboard():
     if "user_id" not in session:
         return redirect("/")
     if "logged_in" in session:
         if session['logged_in']:
+            user_id = session['user_id'];
+            user_info = user.User.get_user_by_id(user_id)
+            ideas = idea.Idea.read_all_ideas()
             # TO DO  need to add the appropriate methods for the dashboard **************************************************************************************************
             # one_user_with_all_buyers = user.User.get_one_user_by_id_with_all_buyers(session['user_id'])
             # return render_template("all_buyers_dashboard.html", one_user_with_all_buyers=one_user_with_all_buyers)
-            return render_template("dashboard.html")
+            return render_template("dashboard.html", user_info=user_info,user=user, ideas=ideas)
     return redirect("/users/logout")
 
 # Update Users Controller

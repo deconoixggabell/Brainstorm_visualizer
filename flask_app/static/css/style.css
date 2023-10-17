@@ -21,5 +21,10 @@
     white-space: pre-line;
 }
 
+
+#form-and-diagram {
+    gap: 40%;
+}
+
 /* https://stackoverflow.com/questions/30593103/preserve-line-breaks-in-textarea */
 
