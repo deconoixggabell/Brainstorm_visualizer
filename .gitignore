@@ -175,3 +175,4 @@ pyrightconfig.json
 mysqlconnection.py
 
 # End of https://www.toptal.com/developers/gitignore/api/python
+flask_app/config/mysqlconnection.py
