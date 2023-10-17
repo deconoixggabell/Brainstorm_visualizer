@@ -13,7 +13,13 @@
 <body>
 
     <div class="container mx-auto">
-        <h1 class="text-center mt-5">Edit User Information</h1>
+        <div class="row d-flex align-items-center justify-content-between mt-5">
+            <h1 class="mt-5 mb-3">Edit User Information</h1>
+            <div class="d-flex align-items-center justify-content-between">
+                <a class="btn btn-outline-info mt-5 mb-3 mr-4" href="/users/dashboard" role="button">Dashboard</a>
+                <a class="btn btn-outline-info mt-5 mb-3" href="/users/logout" role="button">Logout</a>
+            </div>
+    </div>
         <div class="d-flex justify-content-center mt-5">
             <div class="left_side col-5 mr-5">
                 <form action="/users/edit_profile/{{user_info.id}}" method="post" class="bg-light border border-info p-3 px-5 rounded">
@@ -93,10 +99,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+</html>
+=========
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -170,7 +174,7 @@
         </a>
     </div>
 
-    <div class="container">
+    <div class="user_edit_container">
         <div class="edit_user">
             <form action="route" method="post" class="col-md-6 mx-auto">
                 <div class="form-group">
@@ -215,8 +219,8 @@
                 <tbody>
                     {% for u in users %}
                     <tr>
-                        <td>{{u.id }}</td>
-                        <td>{{u.idea }}</td>
+                        <td>{{ u.id }}</td>
+                        <td>{{ u.idea }}</td>
                         <td>
                             <a href="#" class="btn btn-primary btn-sm">Edit</a>
                             <a href="#" class="btn btn-danger btn-sm">Delete</a>
@@ -233,3 +237,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+>>>>>>>>> Temporary merge branch 2

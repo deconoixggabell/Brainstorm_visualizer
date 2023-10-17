@@ -7,21 +7,8 @@ from flask_app.config.mysqlconnection import MySQLConnection
 
 bcrypt = Bcrypt(app)
 
-@app.route('/ideas')
-def ideas():
-    if 'user_id' not in session:
-        return redirect('/')
-
-    data = {
-        'id': session['user_id']
-    }
-
-    user = User.get_user_with_ideas(data)
-
-    return render_template('visual_create.html', user=user)
-
-@app.route('/ideas/create', methods=['GET'])
-def create_idea_form():
+@app.route('/new/visual')
+def add_visual():
     return render_template('visual_create.html')
 
 @app.route('/ideas/create', methods=['POST'])
@@ -30,7 +17,7 @@ def create_idea():
         return redirect('/')
 
     if not Idea.validate_idea(request.form):
-        return redirect('/ideas')
+        return redirect('/new/visual')
 
     data = {
         'main_idea': request.form['main_idea'],
@@ -59,7 +46,7 @@ def create_idea():
 
     Idea.create_idea(data)
 
-    return redirect('/ideas')
+    return redirect('/dashboard')
 
 @app.route('/ideas/<int:idea_id>')
 def show_idea(idea_id):

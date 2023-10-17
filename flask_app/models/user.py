@@ -1,13 +1,22 @@
 from flask import flash
+from flask_app import app
+from flask import render_template, redirect, request, session, url_for, flash
 from flask_app.models import idea
-from flask_bcrypt import Bcrypt
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask_bcrypt import Bcrypt
+bcrypt = Bcrypt(app)
 import re
 
 db = "brainstorm_visualizer"
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
+<<<<<<<<< Temporary merge branch 1
+    db = "brainstorm_visualizer" 
+=========
+    db = "brainstorm_visualizer"
+
+>>>>>>>>> Temporary merge branch 2
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -20,7 +29,8 @@ class User:
 
     @classmethod
     def create_user(cls, data):
-        query = "INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s)"
+        query = """INSERT INTO users (first_name, last_name, email, password)
+        VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s)"""
         user_id = connectToMySQL(cls.db).query_db(query, data)
         return user_id
 
@@ -31,6 +41,43 @@ class User:
         if len(result) < 1:
             return False
         return cls(result[0])
+
+    @classmethod
+    def get_by_id(cls, user_id):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        data = {
+            'id': user_id
+        }
+        result = connectToMySQL(cls.db).query_db(query, data)
+
+<<<<<<<<< Temporary merge branch 1
+        data = {'id': user_id}
+        query = """
+                SELECT * FROM users
+                WHERE id = %(id)s;
+        """
+        
+        results = connectToMySQL(cls.db).query_db(query, data)  # a list with one dictionary in it
+        one_user = cls(results[0])
+        return one_user # returns user object
+
+
+    # the get_user_by_email method will be used when we need to retrieve just one specific row of the table
+    @classmethod
+    def get_user_by_email(cls, email):
+        query = """
+                SELECT * FROM users
+                WHERE email = %(email)s;
+        """
+        data = {'email': email}
+        result = connectToMySQL(cls.db).query_db(query, data)  # a list with one dictionary in it
+        if len(result) < 1:     # no matching user
+            return False
+        one_user = cls(result[0])
+        return one_user # returns user object
+
+
+    # Update Users Models
 
     @classmethod
     def update_user_password(cls, user_data):  
@@ -106,6 +153,49 @@ class User:
             flash("*Passwords do not match", category='registration_form_error')
             is_valid = False
         return is_valid
+
+<<<<<<<<< Temporary merge branch 1
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
+        is_valid = True
+        
+        if len(user['password']) < 8 or user['password'].isspace():
+            flash("Password must be at least 8 characters long.", "error")
+            is_valid = False
+        elif user['password'] != user['confirm_password']:
+            flash("Passwords do not match.", "error")
+            is_valid = False
+        if not User.string_contains_an_uppercase_letter(user['password']):
+            flash("Password must contain at least one uppercase letter.", "error") 
+            is_valid = False
+        if not User.string_contains_a_number(user["password"]):
+            flash("Password must contain at least one number.", "error") 
+            is_valid = False                  
+        return is_valid
+    
+    @staticmethod
+    def validate_user_profile(user):
+
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
+        is_valid = True
+        if len(user['first_name']) < 4 or user['first_name'].isspace() or not user['first_name'].isalpha():
+            flash("First name must be at least 3 letters long.", "error")
+            is_valid = False
+        if len(user['last_name']) < 4 or user['last_name'].isspace()or not user['last_name'].isalpha():
+            flash("Last name must be at least 3 letters long.", "error")
+            is_valid = False                 
+        if len(user['email']) == 0  or user['email'].isspace():
+            flash("Email is required.", "error")
+            is_valid = False       
+        elif not EMAIL_REGEX.match(user['email']):
+            flash("Invalid email format.", "error")
+            is_valid = False   
+        if User.get_user_by_email(user['email']):
+            if int(user['id']) != session['user_id']:  #okay for user to keep the same email, but don't want someone else using this email
+                flash(f"{user['email']} is already taken.")
+                return False
+        return is_valid
     
     # login and logout
 
@@ -153,3 +243,36 @@ class User:
         return user
 
 
+    @classmethod
+    def login_user(cls, data):
+        email_to_check = data["email"]
+        user_in_db = cls.get_user_by_email(email_to_check)
+
+        if not user_in_db:
+            flash(f"{email_to_check} is not registered.", "error")
+            return False
+        
+        password_to_check = data["password"]
+        if not bcrypt.check_password_hash(user_in_db.password, password_to_check):
+            flash("Password does not match.", "error")
+            return False
+        
+        session['user_id'] = user_in_db.id
+        session['first_name'] = user_in_db.first_name
+        session['logged_in'] = True
+
+        return True
+    
+        # the get_user_by_email method will be used when we need to retrieve just one specific row of the table
+    @classmethod
+    def get_user_by_email(cls, email):
+        query = """
+                SELECT * FROM users
+                WHERE email = %(email)s;
+        """
+        data = {'email': email}
+        result = connectToMySQL(cls.db).query_db(query, data)  # a list with one dictionary in it
+        if len(result) < 1:     # no matching user
+            return False
+        one_user = cls(result[0])
+        return one_user # returns user object

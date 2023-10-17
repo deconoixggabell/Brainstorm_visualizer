@@ -6,6 +6,12 @@
     <title>Create New Idea</title>
     <!-- Add the link to Bootstrap CSS CDN if needed -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/diagram.css')}}">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/diagram.css">
+
+
 </head>
 <body>
     <header class="container-fluid bg-primary text-white py-3">
@@ -22,12 +28,12 @@
         </div>
     </header>
 
-    <div class="container mt-5">
-        <h2>Create New Idea</h2>
-        <form action="/ideas/create" method="POST">
+    <div id="form-and-diagram" class="container mt-5 d-flex justify-content-around flex-wrap">
+        <form action="/ideas/create" method="POST" class="">
+            <h2>Create New Idea</h2>
             <div class="form-group">
                 <label for="main_idea">Main Idea</label>
-                <input type="text" name="main_idea" class="form-control" required>
+                <input type="text" name="main_idea" id="main_idea_input" class="form-control" required oninput="updateDiagram()">
             </div>
             <div class="form-group">
                 <label for="num_categories">Number of Categories</label>
@@ -44,23 +50,39 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Create Idea</button>
-                <a href="/ideas" class="btn btn-secondary">Cancel</a>
+                <a href="/#" class="btn btn-secondary">Cancel</a> <!--unsure where to redirect on cancel or if to refresh-->
             </div>
         </form>
+        <!-- DIAGRAM -->
+        <div id="diagram" class="align-self-center p-2">
+            <div id="d_main_idea">
+
+            </div>
+            <!-- <div class="category">
+            </div>
+            <div class="sub_category">
+            </div> -->
+        </div>
     </div>
+
+
 
     <!-- Add the link to Bootstrap JS CDN and jQuery CDN if needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         function updateCategoryFields() {
             const numCategories = parseInt(document.getElementById("num_categories").value);
             const categoryFieldsDiv = document.getElementById("category_fields");
+            const dMainIdead = document.getElementById("d_main_idea"); //not being used yet - Franco
             categoryFieldsDiv.innerHTML = ""; // Clear existing fields
 
             for (let i = 1; i <= numCategories; i++) {
                 const categoryLabel = document.createElement("label");
+                //<label></label>
                 categoryLabel.innerText = `Category ${i}`;
+                //<label>Category #</label>
                 const categoryInput = document.createElement("input");
                 categoryInput.type = "text";
                 categoryInput.name = `cat_${i}`;
@@ -81,72 +103,13 @@
                 }
             }
         }
+
+        function updateDiagram() {
+            const ideaCloud = document.getElementById("d_main_idea"); //not being used yet - Franco
+            const ideaInput = document.getElementById("main_idea_input");
+            ideaCloud.innerHTML = ideaInput.value;
+
+        }
     </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="header">
-        <a href="">
-            <button>Dashboard</button>
-        </a>
-        <a href="">
-            <button>Logout</button>
-        </a>
-    </div>
-
-    <div class="visual_edit_container">
-        <div class="edit">
-            <div class="main_idea">
-                <div class="form-group">
-                    <div>
-                        <label for="main_idea">Main Idea</label>
-                        <input type="text" name="category_1">
-                    </div>
-                    <div>
-                        <label for="num_cat">Number Of category</label>
-                        <select name="main_idea" id="">
-                            <option value="">0</option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="category_1">
-                <label for="category_1">Category 1</label>
-                <input type="text" name="category_1">
-                <select name="main_idea" id="">
-                    <option value="">0</option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                </select>
-            </div>
-
-            <div class="category_2">
-                <label for="category_2">Category 2</label>
-                <input type="text" name="category_2">
-                <select name="main_idea" id="">
-                    <option value="">0</option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                </select>
-            </div>
-            <a href=""><button>Save</button></a>
-        </div>
-        <div class="visual">
-            <!-- missing the junja to get the user imput -->
-        </div>
-    </div>
 </body>
 </html>
