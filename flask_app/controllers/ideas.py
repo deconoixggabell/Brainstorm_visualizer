@@ -46,7 +46,7 @@ def create_idea():
 
     Idea.create_idea(data)
 
-    return redirect('/ideas')
+    return redirect('/dashboard')
 
 @app.route('/ideas/<int:idea_id>')
 def show_idea(idea_id):

@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Create Idea</button>
-                <a href="/ideas" class="btn btn-secondary">Cancel</a>
+                <a href="/#" class="btn btn-secondary">Cancel</a> <!--unsure where to redirect on cancel or if to refresh-->
             </div>
         </form>
         <!-- DIAGRAM -->
@@ -80,7 +80,9 @@
 
             for (let i = 1; i <= numCategories; i++) {
                 const categoryLabel = document.createElement("label");
+                //<label></label>
                 categoryLabel.innerText = `Category ${i}`;
+                //<label>Category #</label>
                 const categoryInput = document.createElement("input");
                 categoryInput.type = "text";
                 categoryInput.name = `cat_${i}`;
