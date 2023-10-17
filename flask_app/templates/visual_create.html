@@ -33,7 +33,7 @@
             <h2>Create New Idea</h2>
             <div class="form-group">
                 <label for="main_idea">Main Idea</label>
-                <input type="text" name="main_idea" id="main_idea_input" class="form-control" required oninput="updateDiagram()">
+                <input type="text" name="main_idea" id="main-idea-input" class="form-control" required oninput="updateDiagram()">
             </div>
             <div class="form-group">
                 <label for="num_categories">Number of Categories</label>
@@ -55,13 +55,17 @@
         </form>
         <!-- DIAGRAM -->
         <div id="diagram" class="align-self-center p-2">
-            <div id="d_main_idea">
+            <div id="d-main-idea">
+                <div class="cat-container">
+                    <div class="cat-bubble-left"></div>
+                    <div class="cat-bubble-right"></div>
+                </div>
+                <div class="subcat-left-container">
+                </div>
+                <div class="subcat-right-container">
+                </div>
+            </div>
 
-            </div>
-            <!-- <div class="category">
-            </div>
-            <div class="sub_category">
-            </div> -->
         </div>
     </div>
 
@@ -75,16 +79,18 @@
         function updateCategoryFields() {
             const numCategories = parseInt(document.getElementById("num_categories").value);
             const categoryFieldsDiv = document.getElementById("category_fields");
-            const dMainIdead = document.getElementById("d_main_idea"); //not being used yet - Franco
+            const dMainIdead = document.getElementById("d-main-idea"); //not being used yet - Franco
             categoryFieldsDiv.innerHTML = ""; // Clear existing fields
 
             for (let i = 1; i <= numCategories; i++) {
                 const categoryLabel = document.createElement("label");
                 //<label></label>
-                categoryLabel.innerText = `Category ${i}`;
+                //categoryLabel.innerText = `Category ${i}`;
+                
                 //<label>Category #</label>
                 const categoryInput = document.createElement("input");
                 categoryInput.type = "text";
+                categoryLabel.htmlFor = `cat_${i}`;
                 categoryInput.name = `cat_${i}`;
                 categoryInput.className = "form-control";
                 categoryFieldsDiv.appendChild(categoryLabel);
@@ -105,8 +111,8 @@
         }
 
         function updateDiagram() {
-            const ideaCloud = document.getElementById("d_main_idea"); //not being used yet - Franco
-            const ideaInput = document.getElementById("main_idea_input");
+            const ideaCloud = document.getElementById("d-main-idea"); //not being used yet - Franco
+            const ideaInput = document.getElementById("main-idea-input");
             ideaCloud.innerHTML = ideaInput.value;
 
         }

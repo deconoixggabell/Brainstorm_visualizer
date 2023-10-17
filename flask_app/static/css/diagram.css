@@ -18,48 +18,80 @@ body {
     margin: 20% 0 20% 0;
 }
 
-#d_main_idea {
+#d-main-idea {
     animation: move 6s ease infinite;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+    /* DIV DEBUG */
+    border-color: black;
+    border-width: 2px;
+    border-style:dashed;
+    /* DIV DEBUG END */
     background: #FFFFFF;
-    height: 60px;
-    width: 60px;
+    height: 100px;
+    width: 100px;
     box-shadow: #fff -25px -15px 0 -5px, #fff 20px -15px, #fff 30px 10px, #fff -30px 15px 0 -10px, #fff -55px 5px 0 -5px;
     text-align: center; /* Temporary fix to center text, may need to use flex to center both vertically and horizontally. */
+
 }
 
-.category {
-    animation: move 6s ease infinite;
+.cat-container {
+    /* disable animation for now, it rotates because of transform, fix this later */
+    /* animation: move 6s ease infinite;  */
+    /* DIV DEBUG */
+    border-color: rgb(0, 201, 140);
+    border-top-color: rgb(195, 0, 255);
+    border-width: 2px;
+    border-style:dashed;
+    /* DIV DEBUG END */
+    position: relative;
+    background: rgba(85, 255, 241, 0.103);
+    height: 244px;
+    width: 244px;
+    transform: rotate(45deg);
+    top: 100%;
+    right: 80%;
+}
+
+.cat-bubble-left, .cat-bubble-right {
+    position:absolute;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -30px;
-    margin-left: -30px;
-    background: #FFFFFF;
-    height: 60px;
-    width: 60px;
-    box-shadow: #FFFFFF 65px -15px 0 -5px,  #FFFFFF 25px -25px,  #FFFFFF 30px 10px,  #FFFFFF 60px 15px 0 -10px,  #FFFFFF 85px 5px 0 -5px;
+    /* DIV DEBUG */
+    border-color: rgb(0, 201, 140);
+    border-width: 2px;
+    border-style:solid;
+    /* DIV DEBUG END */
+    height: 100px;
+    width: 100px;
 }
 
-.sub_category {
-    animation: move 6s ease infinite;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -30px;
-    margin-left: -30px;
-    background: #FFFFFF;
-    height: 60px;
-    width: 60px;
-    box-shadow: #FFFFFF 65px -15px 0 -5px,  #FFFFFF 25px -25px,  #FFFFFF 30px 10px,  #FFFFFF 60px 15px 0 -10px,  #FFFFFF 85px 5px 0 -5px;
+.cat-bubble-left {
+    bottom: -20%;
+    left: -20%;
+}
+.cat-bubble-right {
+    right: -20%;
+    top: -20%;
+}
+
+.subcat-left-container, .subcat-right-container {
+    /* DIV DEBUG */
+    position:relative;
+    border-color: rgb(216, 13, 206);
+    border-top-color: rgb(255, 72, 0);
+    border-width: 2px;
+    border-style:dashed;
+    /* DIV DEBUG END */
+    position: relative;
+    background: rgba(85, 255, 241, 0.103);
+    height: 244px;
+    width: 244px;
+    transform: rotate(45deg);
+    top: 100%;
+    right: 80%;
 }
 
 @keyframes move {
