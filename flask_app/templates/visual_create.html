@@ -24,7 +24,7 @@
 
     <div class="container mt-5">
         <h2>Create New Idea</h2>
-        <form action="/create/visual" name= "create_visual_form" method="POST">
+        <form action="/create/visual" name="create_visual_form" method="POST">
             <div class="form-group">
                 <label for="main_idea">Main Idea</label>
                 <input type="text" name="main_idea" class="form-control" required>
@@ -61,6 +61,7 @@
             for (let i = 1; i <= numCategories; i++) {
                 const categoryLabel = document.createElement("label");
                 categoryLabel.innerText = `Category ${i}`;
+                categoryLabel.htmlFor = `cat_${i}`;
                 const categoryInput = document.createElement("input");
                 categoryInput.type = "text";
                 categoryInput.name = `cat_${i}`;
@@ -71,10 +72,10 @@
                 // Create sub-category input fields
                 for (let j = 1; j <= 3; j++) {
                     const subCategoryLabel = document.createElement("label");
-                    subCategoryLabel.innerText = `Sub-Category ${j}`;
+                    subCategoryLabel.innerText = `Sub-Category ${j} for Category ${i}`;
                     const subCategoryInput = document.createElement("input");
                     subCategoryInput.type = "text";
-                    subCategoryInput.name = `sub_cat_${i}_${j}`;
+                    subCategoryInput.name = `sub_c_${i}_${j}`;
                     subCategoryInput.className = "form-control";
                     categoryFieldsDiv.appendChild(subCategoryLabel);
                     categoryFieldsDiv.appendChild(subCategoryInput);
@@ -84,3 +85,4 @@
     </script>
 </body>
 </html>
+
