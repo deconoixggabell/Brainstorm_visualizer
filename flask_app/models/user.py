@@ -8,8 +8,6 @@ db = "brainstorm_visualizer"
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
-    db = "brainstorm_visualizer"
-
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -35,12 +33,47 @@ class User:
         return cls(result[0])
 
     @classmethod
-    def get_by_id(cls, user_id):
-        query = "SELECT * FROM users WHERE id = %(id)s;"
-        data = {
-            'id': user_id
-        }
-        result = connectToMySQL(cls.db).query_db(query, data)
+    def update_user_password(cls, user_data):  
+
+        user_data = user_data.copy()
+
+        user_data['password'] = bcrypt.generate_password_hash(user_data['password'])
+    
+        this_user = cls.get_user_by_id(user_data['id'])
+
+        if session['user_id'] != this_user.id:
+            return False
+        
+        is_valid = cls.validate_user_password(user_data)
+        
+        if not is_valid:
+            return False
+        
+        query = """
+                UPDATE users
+                SET password = %(password)s
+                WHERE id=%(id)s;    
+                """
+        connectToMySQL(cls.db).query_db(query, user_data)
+        return True
+
+
+    # Delete Users Models
+
+    @classmethod
+    def delete_user(cls, user_id):
+        
+        if session['user_id'] != user_id:
+            return False
+        
+        data = {'id': user_id}
+
+        query = """
+                DELETE FROM users
+                WHERE id = %(id)s;
+        """
+        
+        return connectToMySQL(cls.db).query_db(query, data)
 
         if not result:
             return None
@@ -73,7 +106,10 @@ class User:
             flash("*Passwords do not match", category='registration_form_error')
             is_valid = False
         return is_valid
+    
+    # login and logout
 
+    
     @classmethod
     def get_user_with_ideas(cls, data):
         query = """
