@@ -11,12 +11,9 @@ db = "brainstorm_visualizer"
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
-<<<<<<<<< Temporary merge branch 1
     db = "brainstorm_visualizer" 
-=========
     db = "brainstorm_visualizer"
 
->>>>>>>>> Temporary merge branch 2
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -159,7 +156,6 @@ class User:
             is_valid = False
         return is_valid
 
-<<<<<<<<< Temporary merge branch 1
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
         is_valid = True
@@ -296,5 +292,3 @@ class User:
         session['logged_in'] = True
 
         return True
-    
-    

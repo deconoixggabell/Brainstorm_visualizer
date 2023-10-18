@@ -23,7 +23,6 @@ def index():
     return render_template("login_and_registration.html")
 
 
-<<<<<<<<< Temporary merge branch 1
 @app.route('/users/dashboard')
 def show_dashboard():
     if "user_id" not in session:
