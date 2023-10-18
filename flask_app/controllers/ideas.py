@@ -78,30 +78,29 @@ def update_idea(idea_id):
         return redirect(f'/ideas/{idea_id}/edit')
 
     data = {
-        'id': idea_id,
         'main_idea': request.form['main_idea'],
-        'cat_i': request.form['cat_i'],
-        'cat_ii': request.form['cat_ii'],
-        'cat_iii': request.form['cat_iii'],
-        'cat_iv': request.form['cat_iv'],
-        'cat_v': request.form['cat_v'],
-        'sub_c_i': request.form['sub_c_i'],
-        'sub_c_ii': request.form['sub_c_ii'],
-        'sub_c_iii': request.form['sub_c_iii'],
-        'sub_c_iv': request.form['sub_c_iv'],
-        'sub_c_v': request.form['sub_c_v'],
-        'sub_c_vi': request.form['sub_c_vi'],
-        'sub_c_vii': request.form['sub_c_vii'],
-        'sub_c_viii': request.form['sub_c_viii'],
-        'sub_c_ix': request.form['sub_c_ix'],
-        'sub_c_x': request.form['sub_c_x'],
-        'sub_c_xi': request.form['sub_c_xi'],
-        'sub_c_xii': request.form['sub_c_xii'],
-        'sub_c_xiii': request.form['sub_c_xiii'],
-        'sub_c_xiv': request.form['sub_c_xiv'],
-        'sub_c_xv': request.form['sub_c_xv'],
+        'cat_1': request.form.get('cat_1', ''),  # Use get() with a default value
+        'cat_2': request.form.get('cat_2', ''),  # Use get() with a default value
+        'cat_3': request.form.get('cat_3', ''),  # Use get() with a default value
+        'cat_4': request.form.get('cat_4', ''),  # Use get() with a default value
+        'cat_5': request.form.get('cat_5', ''),  # Use get() with a default value
+        'sub_c_1_1': request.form.get('sub_c_1_1', ''),  # Use get() with a default value
+        'sub_c_1_2': request.form.get('sub_c_1_2', ''),  # Use get() with a default value
+        'sub_c_1_3': request.form.get('sub_c_1_3', ''),  # Use get() with a default value
+        'sub_c_2_1': request.form.get('sub_c_2_1', ''),  # Use get() with a default value
+        'sub_c_2_2': request.form.get('sub_c_2_2', ''),  # Use get() with a default value
+        'sub_c_2_3': request.form.get('sub_c_2_3', ''),  # Use get() with a default value
+        'sub_c_3_1': request.form.get('sub_c_3_1', ''),  # Use get() with a default value
+        'sub_c_3_2': request.form.get('sub_c_3_2', ''),  # Use get() with a default value
+        'sub_c_3_3': request.form.get('sub_c_3_3', ''),  # Use get() with a default value
+        'sub_c_4_1': request.form.get('sub_c_4_1', ''),  # Use get() with a default value
+        'sub_c_4_2': request.form.get('sub_c_4_2', ''),  # Use get() with a default value
+        'sub_c_4_3': request.form.get('sub_c_4_3', ''),  # Use get() with a default value
+        'sub_c_5_1': request.form.get('sub_c_5_1', ''),  # Use get() with a default value
+        'sub_c_5_2': request.form.get('sub_c_5_2', ''),  # Use get() with a default value
+        'sub_c_5_3': request.form.get('sub_c_5_3', ''),  # Use get() with a default value
+        'users_id': session['user_id']
     }
-
     Idea.update_idea(data)
 
     return redirect('/ideas')

@@ -44,8 +44,8 @@
                         <td>
                             <a href="/ideas/{{ idea.id }}" class="btn btn-primary">Visualize It!</a>
                             {% if idea.users_id == user_info.id %}
-                                <a href="/edit_invention/{{ idea.id }}" class="btn btn-warning">Edit</a>
-                                <a href="/ideas/{{idea.id}}/delete" class="btn btn-danger">Delete</a>
+                                <a href="/ideas/{{ idea.id }}/edit" class="btn btn-warning">Edit</a>
+                                <a href="/ideas/{{ idea.id }}/delete" class="btn btn-danger">Delete</a>
                             {% endif %}
                         </td>
                     </tr>
