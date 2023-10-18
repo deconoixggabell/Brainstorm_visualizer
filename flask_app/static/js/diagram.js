@@ -33,10 +33,11 @@ function updateSubCategoryFields(numOfSubCategories, categoryIndex) {
     for (let j = 1; j <= numOfSubCategories; j++) {
         const subCategoryLabel = document.createElement("label");
         subCategoryLabel.innerText = `Sub-Category ${j}`;
+        subCategoryLabel.htmlFor = `sub_c_${categoryIndex}_${j}`;
         const subCategoryInput = document.createElement("input");
         subCategoryInput.type = "text";
-        subCategoryInput.name = `sub_cat_${categoryIndex}_${j}`;
-        subCategoryInput.id = `sub_cat_${categoryIndex}_${j}`;
+        subCategoryInput.name = `sub_c_${categoryIndex}_${j}`;
+        subCategoryInput.id = `sub_c_${categoryIndex}_${j}`;
         subCategoryInput.setAttribute("oninput", "updateDiagram();")
         subCategoryInput.className = "form-control";
         categoryFieldsDiv.appendChild(subCategoryLabel);
