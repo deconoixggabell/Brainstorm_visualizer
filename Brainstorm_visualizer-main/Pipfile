@@ -8,8 +8,6 @@ pymysql = "*"
 flask = "*"
 flask-bcrypt = "*"
 cryptography = "*"
-fastai = "*"
-fastapi = {version = "*", extras = ["all"]}
 
 [dev-packages]
 

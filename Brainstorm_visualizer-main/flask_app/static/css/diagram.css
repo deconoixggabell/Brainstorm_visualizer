@@ -33,17 +33,7 @@ body {
     width: 100px;
     box-shadow: #fff -25px -15px 0 -5px, #fff 20px -15px, #fff 30px 10px, #fff -30px 15px 0 -10px, #fff -55px 5px 0 -5px;
     text-align: center; /* Temporary fix to center text, may need to use flex to center both vertically and horizontally. */
-}
-#d-main-idea>span {
-    position:absolute;
-    display: flex;
-    /* align-content: center; */
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    
+
 }
 
 .cat-container {
