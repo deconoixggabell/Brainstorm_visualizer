@@ -21,6 +21,8 @@ USE `brainstorm_visualizer` ;
 -- -----------------------------------------------------
 -- Table `brainstorm_visualizer`.`users`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `brainstorm_visualizer`.`users` ;
+
 CREATE TABLE IF NOT EXISTS `brainstorm_visualizer`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NOT NULL,
@@ -31,13 +33,15 @@ CREATE TABLE IF NOT EXISTS `brainstorm_visualizer`.`users` (
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
 -- Table `brainstorm_visualizer`.`ideas`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `brainstorm_visualizer`.`ideas` ;
+
 CREATE TABLE IF NOT EXISTS `brainstorm_visualizer`.`ideas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `main_idea` VARCHAR(255) NULL DEFAULT NULL,
@@ -63,13 +67,14 @@ CREATE TABLE IF NOT EXISTS `brainstorm_visualizer`.`ideas` (
   `sub_c_5_3` VARCHAR(255) NULL DEFAULT NULL,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_ideas_users_idx` (`users_id` ASC) VISIBLE,
   CONSTRAINT `fk_ideas_users`
     FOREIGN KEY (`users_id`)
     REFERENCES `brainstorm_visualizer`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb3;
+
+CREATE INDEX `fk_ideas_users_idx` ON `brainstorm_visualizer`.`ideas` (`users_id` ASC) VISIBLE;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
