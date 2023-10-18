@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Idea</title>
+    <!-- Add the link to Bootstrap CSS CDN if needed -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/diagram.css')}}">
+    <link rel="application/javascript" href="{{url_for('static', filename='js/diagram.js')}}" defer>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/diagram.css">
+    <link rel="application/javascript" href="../static/js/diagram.js" defer>
+
+
+</head>
+<body>
+    <header class="container-fluid bg-primary text-white py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-4">Dashboard</h1>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="/users/dashboard" class="btn btn-secondary mr-2">Dashboard</a>
+                    <a href="/users/logout" class="btn btn-danger">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="form-and-diagram" class="container mt-5 d-flex justify-content-around flex-wrap">
+        <form action="/ideas/create" method="POST" class="">
+            <h2>Create New Idea</h2>
+            <div class="form-group">
+                <label for="main_idea">Main Idea</label>
+                <input type="text" name="main_idea" id="main-idea-input" class="form-control" required oninput="updateDiagram()">
+            </div>
+            <div class="form-group">
+                <label for="num_categories">Number of Categories</label>
+                <select name="num_categories" id="num_categories" class="form-control" onchange="updateCategoryFields()">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div id="category_fields">
+                <!-- Category input fields will be added here based on user's selection -->
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Create Idea</button>
+                <a href="/#" class="btn btn-secondary">Cancel</a> <!--unsure where to redirect on cancel or if to refresh-->
+            </div>
+        </form>
+        <!-- DIAGRAM -->
+        <div id="diagram" class="align-self-center p-2">
+            <div id="d-main-idea">
+                <div class="cat-container">
+                    <div class="diagonal-line-left"></div>
+                    <div class="diagonal-line-right"></div>
+                    <div class="cat-bubble-left"></div>
+                    <div class="cat-bubble-right"></div>
+                </div>
+                <div class="subcat-left-container">
+                    <div class="cat-bubble-left"></div>
+                    <div class="cat-bubble-right"></div>
+                </div>
+                <div class="subcat-right-container">
+                    <div class="cat-bubble-left"></div>
+                    <div class="cat-bubble-right"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Add the link to Bootstrap JS CDN and jQuery CDN if needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
