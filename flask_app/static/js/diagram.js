@@ -51,14 +51,18 @@ function updateSubCategoryFields(numOfSubCategories, categoryIndex) {
 function updateDiagram() {
     // const ideaCloud = document.getElementById("d-main-idea"); 
     const ideaCloudText = document.querySelector("#d-main-idea>span");
+
     const ideaInput = document.getElementById("main-idea-input");
     const cat1Input = document.getElementById("cat_1");
     const cat2Input = document.getElementById("cat_2");
 
+
     const categoryLeft = document.querySelector(".cat-container>.cat-bubble-left");
     const categoryRight = document.querySelector(".cat-container>.cat-bubble-right");
-
-
+    
+    //Inputs need to be checked if they exist first
+    //...if they do not exist, DO NOT SET .VALUE or JS will stop processing
+    //...remaining code.
     const cat1Sub1Input = document.getElementById("sub_cat_1_1");
     const cat1Sub2Input = document.getElementById("sub_cat_1_2");
 
