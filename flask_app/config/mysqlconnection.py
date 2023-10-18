@@ -13,7 +13,7 @@ class MySQLConnection:
         connection = pymysql.connect(host = 'localhost',
                                     port=3603,
                                     user = 'dev_account', 
-                                    password = 'IHateLongPasswords', 
+                                    password = 'RootRoot', 
                                     db = db,
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
