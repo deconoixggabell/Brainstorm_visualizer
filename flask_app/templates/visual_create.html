@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/diagram.css')}}">
+    <link rel="application/javascript" href="{{url_for('static', filename='js/diagram.js')}}" defer>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/diagram.css">
+    <link rel="application/javascript" href="../static/js/diagram.js" defer>
 
 
 </head>
@@ -21,8 +23,8 @@
                     <h1 class="display-4">Dashboard</h1>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a href="/dashboard" class="btn btn-secondary mr-2">Dashboard</a>
-                    <a href="/logout" class="btn btn-danger">Logout</a>
+                    <a href="/users/dashboard" class="btn btn-secondary mr-2">Dashboard</a>
+                    <a href="/users/logout" class="btn btn-danger">Logout</a>
                 </div>
             </div>
         </div>
@@ -33,7 +35,7 @@
             <h2>Create New Idea</h2>
             <div class="form-group">
                 <label for="main_idea">Main Idea</label>
-                <input type="text" name="main_idea" id="main_idea_input" class="form-control" required oninput="updateDiagram()">
+                <input type="text" name="main_idea" id="main-idea-input" class="form-control" required oninput="updateDiagram()">
             </div>
             <div class="form-group">
                 <label for="num_categories">Number of Categories</label>
@@ -55,13 +57,23 @@
         </form>
         <!-- DIAGRAM -->
         <div id="diagram" class="align-self-center p-2">
-            <div id="d_main_idea">
+            <div id="d-main-idea">
+                <div class="cat-container">
+                    <div class="diagonal-line-left"></div>
+                    <div class="diagonal-line-right"></div>
+                    <div class="cat-bubble-left"></div>
+                    <div class="cat-bubble-right"></div>
+                </div>
+                <div class="subcat-left-container">
+                    <div class="cat-bubble-left"></div>
+                    <div class="cat-bubble-right"></div>
+                </div>
+                <div class="subcat-right-container">
+                    <div class="cat-bubble-left"></div>
+                    <div class="cat-bubble-right"></div>
+                </div>
+            </div>
 
-            </div>
-            <!-- <div class="category">
-            </div>
-            <div class="sub_category">
-            </div> -->
         </div>
     </div>
 
@@ -70,46 +82,5 @@
     <!-- Add the link to Bootstrap JS CDN and jQuery CDN if needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        function updateCategoryFields() {
-            const numCategories = parseInt(document.getElementById("num_categories").value);
-            const categoryFieldsDiv = document.getElementById("category_fields");
-            const dMainIdead = document.getElementById("d_main_idea"); //not being used yet - Franco
-            categoryFieldsDiv.innerHTML = ""; // Clear existing fields
-
-            for (let i = 1; i <= numCategories; i++) {
-                const categoryLabel = document.createElement("label");
-                //<label></label>
-                categoryLabel.innerText = `Category ${i}`;
-                //<label>Category #</label>
-                const categoryInput = document.createElement("input");
-                categoryInput.type = "text";
-                categoryInput.name = `cat_${i}`;
-                categoryInput.className = "form-control";
-                categoryFieldsDiv.appendChild(categoryLabel);
-                categoryFieldsDiv.appendChild(categoryInput);
-
-                // Create sub-category input fields
-                for (let j = 1; j <= 3; j++) {
-                    const subCategoryLabel = document.createElement("label");
-                    subCategoryLabel.innerText = `Sub-Category ${j}`;
-                    const subCategoryInput = document.createElement("input");
-                    subCategoryInput.type = "text";
-                    subCategoryInput.name = `sub_cat_${i}_${j}`;
-                    subCategoryInput.className = "form-control";
-                    categoryFieldsDiv.appendChild(subCategoryLabel);
-                    categoryFieldsDiv.appendChild(subCategoryInput);
-                }
-            }
-        }
-
-        function updateDiagram() {
-            const ideaCloud = document.getElementById("d_main_idea"); //not being used yet - Franco
-            const ideaInput = document.getElementById("main_idea_input");
-            ideaCloud.innerHTML = ideaInput.value;
-
-        }
-    </script>
 </body>
 </html>
