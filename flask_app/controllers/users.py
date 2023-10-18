@@ -106,23 +106,3 @@ def login():
     if not user.User.login_user(request.form):
         return render_template("login_and_registration.html", login_email=request.form["email"])
     return redirect('/users/dashboard')
-    
-
-    
-# api test
-# just for testing will move to api file
-from flask import *
-from flask_app import app
-from flask_app.controllers import users, ideas
-import json, time
-
-@app.route('/api', methods=['GET'])
-def api():
-    data_set = {
-        'test': 'test',
-        'message':'it worked yay',
-        'timestamp': time.time()
-    }
-    result = json.dumps(data_set)
-    return result
-    return render_template("visual_code.html",)
