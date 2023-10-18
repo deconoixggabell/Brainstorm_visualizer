@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/diagram.css')}}">
-    <link rel="application/javascript" href="{{url_for('static', filename='js/diagram.js')}}" defer>
+    <script rel="application/javascript" src="{{url_for('static', filename='js/diagram.js')}}" defer></script>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/diagram.css">
-    <link rel="application/javascript" href="../static/js/diagram.js" defer>
+    <script rel="application/javascript" src="../static/js/diagram.js" defer></script>
 
 
 </head>
 <body>
+    test
     <header class="container-fluid bg-primary text-white py-3">
         <div class="container">
             <div class="row">
@@ -31,7 +32,7 @@
     </header>
 
     <div id="form-and-diagram" class="container mt-5 d-flex justify-content-around flex-wrap">
-        <form action="/ideas/create" method="POST" class="">
+        <form action="/create/visual" method="POST" class="">
             <h2>Create New Idea</h2>
             <div class="form-group">
                 <label for="main_idea">Main Idea</label>

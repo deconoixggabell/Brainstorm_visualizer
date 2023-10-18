@@ -29,13 +29,58 @@ def show_dashboard():
         return redirect("/")
     if "logged_in" in session:
         if session['logged_in']:
+            user_id = session['user_id']
+            user_info = user.User.get_user_by_id(user_id)
+            ideas = idea.Idea.read_all_ideas()
             # TO DO  need to add the appropriate methods for the dashboard **************************************************************************************************
             # one_user_with_all_buyers = user.User.get_one_user_by_id_with_all_buyers(session['user_id'])
             # return render_template("all_buyers_dashboard.html", one_user_with_all_buyers=one_user_with_all_buyers)
-            return render_template("dashboard.html")
+            return render_template("dashboard.html", user_info=user_info,user=user, ideas=ideas)
     return redirect("/users/logout")
 
 # Update Users Controller
+
+@app.route('/users/edit_user_form/<int:user_id>')
+def show_update_user_form(user_id):
+    if "user_id" not in session:
+        return redirect("/")
+    if "logged_in" in session:
+        if session['logged_in']:
+            user_info = user.User.get_user_by_id(user_id)
+            return render_template("user_edit.html", user_info=user_info)  
+    return redirect("/users/logout") 
+
+@app.route('/users/edit_profile/<int:user_id>', methods=['POST'])
+def update_user_profile(user_id):
+
+    if "user_id" not in session:
+        return redirect("/")
+    
+    if request.form["which_form"] == "edit_profile":
+        one_user = user.User.update_user_profile(request.form)
+
+        if not one_user:
+            flash("Unable to update user profile.", "error")
+            path = f"/users/edit_user_form/{user_id}"    
+            return redirect(path)
+
+    return redirect('/users/dashboard')
+
+@app.route('/users/update_password/<int:user_id>', methods=['POST'])
+def update_user_password(user_id):
+
+    if "user_id" not in session:
+        return redirect("/")
+    
+    if request.form["which_form"] == "change_password":
+        one_user = user.User.update_user_password(request.form)
+
+        if not one_user:
+            flash("Unable to update password.", "error")
+            path = f"/users/edit_user_form/{user_id}"    
+            return redirect(path)    
+        
+    return redirect('/users/dashboard')
 
 
 # Delete Users Controller

@@ -19,7 +19,7 @@
                 <div class="col-md-6 text-right">
                     <a href="/users/edit_user_form/{{session['user_id']}}" class="btn btn-secondary mr-2">View Account</a>
                     <a href="/new/visual" class="btn btn-secondary mr-2">Create Diagram</a>
-                    <a href="/logout" class="btn btn-danger">Logout</a>
+                    <a href="/users/logout" class="btn btn-danger">Logout</a>
                 </div>
             </div>
         </div>
@@ -36,16 +36,19 @@
                 </tr>
             </thead>    
             <tbody>
-                {% for u in users %}
-                <tr>
-                    <td>{{u.id}}</td>
-                    <td>{{u.idea}}</td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                    <td><a href="#" class="btn btn-success btn-sm">Click To Copy</a></td>
-                </tr>
+                {% for idea in ideas %}
+                    <tr>
+                        <td></td>
+                        <td>{{ idea.main_idea }}</td>
+                        <td></td>
+                        <td>
+                            <a href="/ideas/{{ idea.id }}" class="btn btn-primary">Visualize It!</a>
+                            {% if idea.users_id == user.id %}
+                                <a href="/edit_invention/{{ idea.id }}" class="btn btn-warning">Edit</a>
+                                <a href="/ideas/{{idea.id}}/delete" class="btn btn-danger">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
