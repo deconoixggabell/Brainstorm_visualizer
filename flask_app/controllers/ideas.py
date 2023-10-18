@@ -44,8 +44,6 @@ def create_idea():
 
     return redirect('/dashboard')
 
-
-
 @app.route('/ideas/<int:idea_id>')
 def show_idea(idea_id):
     if 'user_id' not in session:
