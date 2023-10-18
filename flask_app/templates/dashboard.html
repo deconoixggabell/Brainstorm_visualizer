@@ -41,14 +41,14 @@
                         <td></td>
                         <td>{{ idea.main_idea }}</td>
                         <td>
-                        {% if idea.users_id == user.id %}
-                            <a href="/edit_invention/{{ idea.id }}" class="btn btn-warning">Edit</a>
-                            <a href="/ideas/{{idea.id}}/delete" class="btn btn-danger">Delete</a>
+                            {% if idea.users_id == user_info.id %}
+                            <a href="/ideas/{{ idea.id }}/edit" class="btn btn-warning">Edit</a>
+                            <a href="/ideas/{{ idea.id }}/delete" class="btn btn-danger">Delete</a>
                         {% endif %}
+
                         </td>
                         <td>
-                            <a href="/ideas/{{ idea.id }}" class="btn btn-primary">Visualize It!</a>
-                        </td>
+                            <a href="/api" class="btn btn-primary">Visualize It!</a>                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -65,15 +65,6 @@
             <!-- Add more user stats here if needed -->
         </div>
     </div>
-
-
-
-<!-- Im using this only to test the api not part of the code "Glory"-->
-<!-- start -->
-<a href="/api">test_api</a>
-<!-- end -->
-
-
     <!-- Add the link to Bootstrap JS CDN and jQuery CDN for Bootstrap components if needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
