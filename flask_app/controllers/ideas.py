@@ -117,4 +117,4 @@ def delete_idea(idea_id):
 
     Idea.delete_idea(data)
 
-    return redirect('/dashboard')
+    return redirect('/users/dashboard')
