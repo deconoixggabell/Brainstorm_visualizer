@@ -74,7 +74,7 @@ def update_idea(idea_id):
     if 'user_id' not in session:
         return redirect('/')
 
-    if not Idea.validate_idea(request.form):
+    if not Idea.valid(request.form):
         return redirect(f'/ideas/{idea_id}/edit')
 
     data = {
@@ -101,9 +101,9 @@ def update_idea(idea_id):
         'sub_c_5_3': request.form.get('sub_c_5_3', ''),  # Use get() with a default value
         'users_id': session['user_id']
     }
-    Idea.update_idea(data)
+    Idea.update(data)
 
-    return redirect('/ideas')
+    return redirect('/users/dashboard')
 
 @app.route('/ideas/<int:idea_id>/delete')
 def delete_idea(idea_id):
