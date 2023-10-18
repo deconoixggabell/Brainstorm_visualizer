@@ -67,7 +67,7 @@ def edit_idea(idea_id):
 
     idea = Idea.get_idea_with_user(data)
 
-    return render_template('edit_idea.html', idea=idea)
+    return render_template('visual_edit.html', idea=idea)
 
 @app.route('/ideas/<int:idea_id>/update', methods=['POST'])
 def update_idea(idea_id):
