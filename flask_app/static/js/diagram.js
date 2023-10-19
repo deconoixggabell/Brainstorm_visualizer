@@ -56,21 +56,21 @@ function updateDiagram() {
     if(document.getElementById("cat_1")){
         console.log("Cat 1 trigger")
         const cat1Input = document.getElementById("cat_1");
-        const categoryLeft = document.querySelector(".cat-container>.cat-bubble-left");
+        const categoryLeft = document.querySelector(".cat-container>.cat-bubble-left>span");
         categoryLeft.innerHTML = cat1Input.value;
     }
     //CATEGORY 1 - SUB CAT 1
     if(document.getElementById("sub_c_1_1")){
         console.log("Cat 1 - 1 trigger")
         const cat1Sub1Input = document.getElementById("sub_c_1_1");
-        const subLeftCategoryLeft = document.querySelector(".subcat-left-container>.cat-bubble-left");
+        const subLeftCategoryLeft = document.querySelector(".subcat-left-container>.cat-bubble-left>span");
         subLeftCategoryLeft.innerHTML = cat1Sub1Input.value;
     }
     //CATEGORY 1 - SUB CAT 2
     if(document.getElementById("sub_c_1_2")) {
         console.log("Cat 1 - 2 trigger")
         const cat1Sub2Input = document.getElementById("sub_c_1_2");
-        const subLeftCategoryRight = document.querySelector(".subcat-left-container>.cat-bubble-right");
+        const subLeftCategoryRight = document.querySelector(".subcat-left-container>.cat-bubble-right>span");
         subLeftCategoryRight.innerHTML = cat1Sub2Input.value;
     }
 
@@ -78,7 +78,7 @@ function updateDiagram() {
     if(document.getElementById("cat_2")) {
         console.log("Cat 2 trigger")
         const cat2Input = document.getElementById("cat_2");
-        const categoryRight = document.querySelector(".cat-container>.cat-bubble-right");
+        const categoryRight = document.querySelector(".cat-container>.cat-bubble-right>span");
         categoryRight.innerHTML = cat2Input.value;
 
     }
@@ -86,14 +86,14 @@ function updateDiagram() {
     if(document.getElementById("sub_c_2_1")) {
         console.log("Cat 2 - 1 trigger")
         const cat2Sub1Input = document.getElementById("sub_c_2_1");
-        const subRightCategoryLeft = document.querySelector(".subcat-right-container>.cat-bubble-left");
+        const subRightCategoryLeft = document.querySelector(".subcat-right-container>.cat-bubble-left>span");
         subRightCategoryLeft.innerHTML = cat2Sub1Input.value;
     }
     //CATEGORY 2 - SUB CAT 2
     if(document.getElementById("sub_c_2_2")){
         console.log("Cat 2 - 2 trigger")
     const cat2Sub2Input = document.getElementById("sub_c_2_2");
-    const subRightCategoryRight = document.querySelector(".subcat-right-container>.cat-bubble-right");
+    const subRightCategoryRight = document.querySelector(".subcat-right-container>.cat-bubble-right>span");
     subRightCategoryRight.innerHTML = cat2Sub2Input.value;
     }
     
