@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Idea</title>
+    <title>Edit {{idea.main_idea}}</title>
     <!-- Add the link to Bootstrap CSS CDN if needed -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
@@ -34,32 +34,97 @@
         <form action="/ideas/{{idea.id}}/update" method="POST">
             <h2>Edit {{idea.main_idea}}</h2>
             <h3>Edit {{idea.id}}</h3>
-            <input type="hidden" name="idea.id" value="{{idea.id}}" >
+            <input type="hidden" name="idea_id" value="{{idea.id}}" >
             <div class="form-group">
                 <label for="main_idea">Main Idea</label>
-                <input type="text" name="main_idea" id="main-idea-input" class="form-control" required oninput="updateDiagram()">
+                <input type="text" name="main_idea" id="main-idea-input" class="form-control" required oninput="updateDiagram()" value="{{idea.main_idea}}">
+            </div>
+
+            <div class="form-group">
+                <label for="category-1">Category 1</label>
+                <input type="text" name="cat_1" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.cat_1}}">
             </div>
             <div class="form-group">
-                <label for="num_categories">Number of Categories</label>
-                <select name="num_categories" id="num_categories" class="form-control" onchange="updateCategoryFields()">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                <label for="sub_c_1_1">Sub-Category 1.1</label>
+                <input type="text" name="sub_c_1_1" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_1_1}}">
             </div>
             <div class="form-group">
-                <label for="num_sub_categories">Number of Sub Categories</label>
-                <select name="num_sub_categories" id="num_sub_categories" class="form-control" onchange="updateCategoryFields()">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <label for="sub_c_1_2">Sub-Category 1.2</label>
+                <input type="text" name="sub_c_1_2" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_1_2}}">
             </div>
-            <div id="category_fields">
-                <!-- Category input fields will be added here based on user's selection -->
+            <div class="form-group">
+                <label for="sub_c_1_3">Sub-Category 1.3</label>
+                <input type="text" name="sub_c_1_3" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_1_3}}">
             </div>
+
+            <div class="form-group">
+                <label for="category-2">Category 2</label>
+                <input type="text" name="cat_2" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.cat_2}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_2_1">Sub-Category 2.1</label>
+                <input type="text" name="sub_c_2_1" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_2_1}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_2_2">Sub-Category 2.2</label>
+                <input type="text" name="sub_c_2_2" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_2_2}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_2_3">Sub-Category 23</label>
+                <input type="text" name="sub_c_2_3" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_2_3}}">
+            </div>
+
+            <div class="form-group">
+                <label for="category-3">Category 3</label>
+                <input type="text" name="cat_3" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.cat_3}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_3_1">Sub-Category 3.1</label>
+                <input type="text" name="sub_c_3_1" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_3_1}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_3_2">Sub-Category 3.2</label>
+                <input type="text" name="sub_c_3_2" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_3_2}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_3_3">Sub-Category 3.3</label>
+                <input type="text" name="sub_c_3_3" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_3_3}}">
+            </div>
+
+            <div class="form-group">
+                <label for="category-4">Category 4</label>
+                <input type="text" name="cat_4" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.cat_4}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_4_1">Sub-Category 4.1</label>
+                <input type="text" name="sub_c_4_1" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_4_1}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_4_2">Sub-Category 4.2</label>
+                <input type="text" name="sub_c_4_1" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_4_2}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_4_3">Sub-Category 4.3</label>
+                <input type="text" name="sub_c_4_1" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_4_3}}">
+            </div>
+
+            <div class="form-group">
+                <label for="category-5">Category 5</label>
+                <input type="text" name="cat_5" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.cat_5}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_5_1">Sub-Category 5.1</label>
+                <input type="text" name="sub_c_5_1" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_5_1}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_5_2">Sub-Category 5.2</label>
+                <input type="text" name="sub_c_5_2" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_5_2}}">
+            </div>
+            <div class="form-group">
+                <label for="sub_c_5_3">Sub-Category 5.3</label>
+                <input type="text" name="sub_c_5_3" id="main-idea-input" class="form-control" oninput="updateDiagram()" value="{{idea.sub_c_5_3}}">
+            </div>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Update Storm Cloud</button>
                 <a href="/users/dashboard" class="btn btn-secondary">Cancel</a> <!--unsure where to redirect on cancel or if to refresh-->

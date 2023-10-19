@@ -66,6 +66,7 @@ def edit_idea(idea_id):
     }
 
     idea = Idea.get_idea_with_user(data)
+    print(idea)
 
     return render_template('visual_edit.html', idea=idea)
 
