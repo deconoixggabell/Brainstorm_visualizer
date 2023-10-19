@@ -29,8 +29,9 @@
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th>#</th>
+                    <th>Posted by:</th>
                     <th>Idea</th>
+                    <th>Visited:</th>
                     <th>Actions</th>
                     <th>Embedded Code</th>
                 </tr>
@@ -38,8 +39,9 @@
             <tbody>
                 {% for idea in ideas %}
                     <tr>
-                        <td></td>
+                        <td>{{ idea.first_name }}</td>
                         <td>{{ idea.main_idea }}</td>
+                        <td>views</td>
                         <td>
                             <a href="/api/{{idea.id}}" class="btn btn-primary">Visualize It!</a>
                             {% if idea.users_id == user_info.id %}
@@ -55,16 +57,7 @@
         </table>
     </div>
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-6">
-                <h4>{{ user_info.first_name }}'s Stats</h4>
-                <p>Number Of Ideas:</p>
-                <p>Total Visits To Ideas:</p>
-            </div>
-            <!-- Add more user stats here if needed -->
-        </div>
-    </div>
+
     <!-- Add the link to Bootstrap JS CDN and jQuery CDN for Bootstrap components if needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
