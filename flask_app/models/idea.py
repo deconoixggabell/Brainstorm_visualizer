@@ -88,12 +88,12 @@ class Idea:
         query = """
         UPDATE ideas
         SET main_idea=%(main_idea)s, cat_1=%(cat_1)s, cat_2=%(cat_2)s,
-        cat_3=%(cat_3)s, cat_iv=%(cat_4)s, cat_5=%(cat_5)s,
+        cat_3=%(cat_3)s, cat_4=%(cat_4)s, cat_5=%(cat_5)s,
         sub_c_1_1=%(sub_c_1_1)s, sub_c_1_2=%(sub_c_1_2)s, sub_c_1_3=%(sub_c_1_3)s,
         sub_c_2_1=%(sub_c_2_1)s, sub_c_2_2=%(sub_c_2_2)s, sub_c_2_3=%(sub_c_2_3)s,
         sub_c_3_1=%(sub_c_3_1)s, sub_c_3_2=%(sub_c_3_2)s, sub_c_3_3=%(sub_c_3_3)s,
         sub_c_4_1=%(sub_c_4_1)s, sub_c_4_2=%(sub_c_4_2)s, sub_c_4_3=%(sub_c_4_3)s,
-        sub_c_5_1=%(sub_c_5_1)s, sub_c_5_2=%(sub_c_5_2)s, sub_c_5_3=%(sub_c_5_3)s,
+        sub_c_5_1=%(sub_c_5_1)s, sub_c_5_2=%(sub_c_5_2)s, sub_c_5_3=%(sub_c_5_3)s
         WHERE id = %(id)s;
         """
         return connectToMySQL(cls.db).query_db(query, data)
