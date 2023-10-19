@@ -34,4 +34,5 @@ def api(id):
         'sub_c_5_3': data_idea_sql.sub_c_5_3,  
     }
     result = json.dumps(data_idea_json)
-    return render_template("visual_code.html",result =result )
+    # return render_template("visual_code.html",result =result )
+    return (result)

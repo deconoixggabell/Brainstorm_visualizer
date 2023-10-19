@@ -1,8 +1,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Visual View</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/diagram.css')}}">
+    <script rel="application/javascript" src="{{url_for('static', filename='js/diagram.js')}}" defer></script>
+    <script rel="application/javascript" src="{{url_for('static', filename='js/api_fetch.js')}}" defer></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/diagram.css">
+    <script rel="application/javascript" src="../static/js/diagram.js" defer></script>
+    <script rel="application/javascript" src="../static/js/api_fetch.js" defer></script>
+
     <style>
         /* Add custom styles here if needed */
     </style>
@@ -12,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1 class="display-4">Dashboard</h1>
+                    <h1 class="display-4">Visual View</h1>
                 </div>
                 <div class="col-md-6 text-right">
                     <a href="/users/edit_user_form/{{session['user_id']}}" class="btn btn-secondary mr-2">View Account</a>
@@ -22,5 +31,35 @@
             </div>
         </div>
     </header>
+    <div id="form-and-diagram" class="container mt-5 d-flex justify-content-around flex-wrap">
+
+        <div class="container">
+            <label>API Search:</label>
+            <input type="text" name="idea-input-field" id="idea-input-field" class="form-control" required value="{{idea.id}}">
+            <button onclick="getIdeaInfo()">Search</button>
+        </div>
+        <!-- DIAGRAM -->
+        <div id="diagram" class="align-self-center p-2">
+            <div id="d-main-idea">
+                <span><p>test</p></span>
+                <div class="cat-container">
+                    <div class="diagonal-line-left"></div>
+                    <div class="diagonal-line-right"></div>
+                    <div class="cat-bubble-left"><span></span></div>
+                    <div class="cat-bubble-right"><span></span></div>
+                </div>
+                <div class="subcat-left-container">
+                    <div class="cat-bubble-left"><span></span></div>
+                    <div class="cat-bubble-right"><span></span></div>
+                </div>
+                <div class="subcat-right-container">
+                    <div class="cat-bubble-left"><span></span></div>
+                    <div class="cat-bubble-right"><span></span></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
 </body>
 </html>
