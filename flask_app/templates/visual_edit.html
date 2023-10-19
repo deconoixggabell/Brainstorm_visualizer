@@ -34,6 +34,7 @@
         <form action="/ideas/{{idea.id}}/update" method="POST">
             <h2>Edit {{idea.main_idea}}</h2>
             <h3>Edit {{idea.id}}</h3>
+            <input type="hidden" name="idea.id" value="{{idea.id}}" >
             <div class="form-group">
                 <label for="main_idea">Main Idea</label>
                 <input type="text" name="main_idea" id="main-idea-input" class="form-control" required oninput="updateDiagram()">
