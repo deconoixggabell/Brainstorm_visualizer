@@ -41,14 +41,14 @@
                         <td></td>
                         <td>{{ idea.main_idea }}</td>
                         <td>
+                            <a href="/api/{{idea.id}}" class="btn btn-primary">Visualize It!</a>
                             {% if idea.users_id == user_info.id %}
                             <a href="/ideas/{{ idea.id }}/edit" class="btn btn-warning">Edit</a>
                             <a href="/ideas/{{ idea.id }}/delete" class="btn btn-danger">Delete</a>
                         {% endif %}
-
                         </td>
                         <td>
-                            <a href="/api/{{idea.id}}" class="btn btn-primary">Visualize It!</a>                        </td>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

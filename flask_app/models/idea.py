@@ -87,13 +87,13 @@ class Idea:
     def update(cls, data):
         query = """
         UPDATE ideas
-        SET main_idea=%(main_idea)s, cat_i=%(cat_i)s, cat_ii=%(cat_ii)s,
-        cat_iii=%(cat_iii)s, cat_iv=%(cat_iv)s, cat_v=%(cat_v)s,
-        sub_c_i=%(sub_c_i)s, sub_c_ii=%(sub_c_ii)s, sub_c_iii=%(sub_c_iii)s,
-        sub_c_iv=%(sub_c_iv)s, sub_c_v=%(sub_c_v)s, sub_c_vi=%(sub_c_vi)s,
-        sub_c_vii=%(sub_c_vii)s, sub_c_viii=%(sub_c_viii)s, sub_c_ix=%(sub_c_ix)s,
-        sub_c_x=%(sub_c_x)s, sub_c_xi=%(sub_c_xi)s, sub_c_xii=%(sub_c_xii)s,
-        sub_c_xiii=%(sub_c_xiii)s, sub_c_xiv=%(sub_c_xiv)s, sub_c_xv=%(sub_c_xv)s
+        SET main_idea=%(main_idea)s, cat_1=%(cat_1)s, cat_2=%(cat_2)s,
+        cat_3=%(cat_3)s, cat_4=%(cat_4)s, cat_5=%(cat_5)s,
+        sub_c_1_1=%(sub_c_1_1)s, sub_c_1_2=%(sub_c_1_2)s, sub_c_1_3=%(sub_c_1_3)s,
+        sub_c_2_1=%(sub_c_2_1)s, sub_c_2_2=%(sub_c_2_2)s, sub_c_2_3=%(sub_c_2_3)s,
+        sub_c_3_1=%(sub_c_3_1)s, sub_c_3_2=%(sub_c_3_2)s, sub_c_3_3=%(sub_c_3_3)s,
+        sub_c_4_1=%(sub_c_4_1)s, sub_c_4_2=%(sub_c_4_2)s, sub_c_4_3=%(sub_c_4_3)s,
+        sub_c_5_1=%(sub_c_5_1)s, sub_c_5_2=%(sub_c_5_2)s, sub_c_5_3=%(sub_c_5_3)s
         WHERE id = %(id)s;
         """
         return connectToMySQL(cls.db).query_db(query, data)

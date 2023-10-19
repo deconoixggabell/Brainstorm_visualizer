@@ -47,50 +47,55 @@ function updateSubCategoryFields(numOfSubCategories, categoryIndex) {
     
 }
 
-    //MUST FIX WITH A PARAMETER PASSED INSTEAD. OTHERWISE IF A DIV DOESN'T EXISTS, IT WILL STOP RUNNING
-    //... THE REMAINDER OF THE CODE
+// MUST FIX: SUB CATS NOW USE SPANS, MUST CHANGE ALL QUERY SELECTORS TO MATCH SUB CATEOGIES SPANS
 function updateDiagram() {
-    // const ideaCloud = document.getElementById("d-main-idea"); 
     const ideaCloudText = document.querySelector("#d-main-idea>span");
-
     const ideaInput = document.getElementById("main-idea-input");
-    const cat1Input = document.getElementById("cat_1");
-    const cat2Input = document.getElementById("cat_2");
-
-
-    const categoryLeft = document.querySelector(".cat-container>.cat-bubble-left");
-    const categoryRight = document.querySelector(".cat-container>.cat-bubble-right");
-    
-    //Inputs need to be checked if they exist first
-    //...if they do not exist, DO NOT SET .VALUE or JS will stop processing
-    //...remaining code.
-    const cat1Sub1Input = document.getElementById("sub_cat_1_1");
-    const cat1Sub2Input = document.getElementById("sub_cat_1_2");
-
-    const cat2Sub1Input = document.getElementById("sub_cat_2_1");
-    const cat2Sub2Input = document.getElementById("sub_cat_2_2");
-
-    const subLeftCategoryLeft = document.querySelector(".subcat-left-container>.cat-bubble-left");
-    const subLeftCategoryRight = document.querySelector(".subcat-left-container>.cat-bubble-right");
-
-    const subRightCategoryLeft = document.querySelector(".subcat-right-container>.cat-bubble-left");
-    const subRightCategoryRight = document.querySelector(".subcat-right-container>.cat-bubble-right");
-
-    //MUST FIX WITH A PARAMETER PASSED INSTEAD. OTHERWISE IF A DIV DOESN'T EXISTS, IT WILL STOP RUNNING
-    //... THE REMAINDER OF THE CODE
     ideaCloudText.innerHTML = ideaInput.value;
-    categoryLeft.innerHTML = cat1Input.value;
-    categoryRight.innerHTML = cat2Input.value;
+    //CATEGORY 1
+    if(document.getElementById("cat_1")){
+        console.log("Cat 1 trigger")
+        const cat1Input = document.getElementById("cat_1");
+        const categoryLeft = document.querySelector(".cat-container>.cat-bubble-left");
+        categoryLeft.innerHTML = cat1Input.value;
+    }
+    //CATEGORY 1 - SUB CAT 1
+    if(document.getElementById("sub_c_1_1")){
+        console.log("Cat 1 - 1 trigger")
+        const cat1Sub1Input = document.getElementById("sub_c_1_1");
+        const subLeftCategoryLeft = document.querySelector(".subcat-left-container>.cat-bubble-left");
+        subLeftCategoryLeft.innerHTML = cat1Sub1Input.value;
+    }
+    //CATEGORY 1 - SUB CAT 2
+    if(document.getElementById("sub_c_1_2")) {
+        console.log("Cat 1 - 2 trigger")
+        const cat1Sub2Input = document.getElementById("sub_c_1_2");
+        const subLeftCategoryRight = document.querySelector(".subcat-left-container>.cat-bubble-right");
+        subLeftCategoryRight.innerHTML = cat1Sub2Input.value;
+    }
 
+    //CATEGORY 2
+    if(document.getElementById("cat_2")) {
+        console.log("Cat 2 trigger")
+        const cat2Input = document.getElementById("cat_2");
+        const categoryRight = document.querySelector(".cat-container>.cat-bubble-right");
+        categoryRight.innerHTML = cat2Input.value;
 
-    subLeftCategoryLeft.innerHTML = cat1Sub1Input.value;
-    subLeftCategoryRight.innerHTML = cat1Sub2Input.value;
-
-    subRightCategoryLeft.innerHTML = cat2Sub1Input.value;
+    }
+    //CATEGORY 2 - SUB CAT 1
+    if(document.getElementById("sub_c_2_1")) {
+        console.log("Cat 2 - 1 trigger")
+        const cat2Sub1Input = document.getElementById("sub_c_2_1");
+        const subRightCategoryLeft = document.querySelector(".subcat-right-container>.cat-bubble-left");
+        subRightCategoryLeft.innerHTML = cat2Sub1Input.value;
+    }
+    //CATEGORY 2 - SUB CAT 2
+    if(document.getElementById("sub_c_2_2")){
+        console.log("Cat 2 - 2 trigger")
+    const cat2Sub2Input = document.getElementById("sub_c_2_2");
+    const subRightCategoryRight = document.querySelector(".subcat-right-container>.cat-bubble-right");
     subRightCategoryRight.innerHTML = cat2Sub2Input.value;
-
-
-
-
+    }
+    
 
 }
