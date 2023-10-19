@@ -110,7 +110,7 @@ body {
     transform:rotate(-45deg)
 }
 
-.cat-bubble-left>span,.cat-bubble-right>span {
+.cat-bubble-left>span {
     position: absolute;
     display: flex;
     align-content: center;
