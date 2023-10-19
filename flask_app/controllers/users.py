@@ -1,9 +1,17 @@
+import os
 from flask_app import app
-from flask import render_template, redirect, request, session, url_for, flash
+from flask import render_template, redirect, request, session, url_for, flash, send_from_directory
 from flask_app.models import user, idea # import entire file, rather than class, to avoid circular imports (separate with commas)
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
+
+# fav icon
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 # Create Users Controller
 
