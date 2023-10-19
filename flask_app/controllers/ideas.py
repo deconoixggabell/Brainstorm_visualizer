@@ -78,7 +78,7 @@ def update_idea(idea_id):
         return redirect(f'/ideas/{idea_id}/edit')
 
     data = {
-        'id': request.form['idea.id'],
+        'id': request.form['idea_id'],
         'main_idea': request.form['main_idea'],
         'cat_1': request.form.get('cat_1', ''),  # Use get() with a default value
         'cat_2': request.form.get('cat_2', ''),  # Use get() with a default value
